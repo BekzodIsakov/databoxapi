@@ -57,6 +57,3 @@ uploads/
 
 # Ignore public directory (if used for generated static content)
 public/
-
-# Optional: Ignore the src folder (if you're compiling from TypeScript or using a different language)
-src/
