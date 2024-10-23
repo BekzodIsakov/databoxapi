@@ -1,0 +1,62 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.test
+.env.production
+.env.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional npm cache directory
+.npm/
+
+# Coverage directory for testing tools like Jest
+coverage/
+
+# Build directories
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+
+# Typescript build output
+*.tsbuildinfo
+
+# Generated documentation
+docs/
+
+# Ignore debug files
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: Ignore uploads folder
+uploads/
+
+# Ignore public directory (if used for generated static content)
+public/
+
+# Optional: Ignore the src folder (if you're compiling from TypeScript or using a different language)
+src/
