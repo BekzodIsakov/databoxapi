@@ -23,4 +23,46 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.patch("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const product = await ProductModel.findById(id);
+    if (!product) {
+      const error = new Error("Product not found!");
+      error.status = 404;
+      throw error;
+    }
+
+    product.set(req.body); // Merge the new data into the product instance
+    await product.validate(); // Validate the merged data without saving
+
+    res.send(product);
+  } catch (error) {
+    console.log(error);
+
+    next(error);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const product = await ProductModel.findById(id);
+    if (!product) {
+      const error = new Error("Product not found!");
+      error.status = 404;
+      throw error;
+    }
+
+    product.set(req.body); // Merge the new data into the product instance
+    await product.validate(); // Validate the merged data without saving
+
+    res.send(req.body);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
