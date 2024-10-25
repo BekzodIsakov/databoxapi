@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const {productsRouter} = require("./routers");
+require("./mongoose");
 
 dotenv.config({ path: ".env" });
 
