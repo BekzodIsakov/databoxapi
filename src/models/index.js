@@ -1,3 +1,3 @@
-const productModel = require("./product");
+const ProductModel = require("./productModel");
 
-module.exports = { productModel };
+module.exports = { ProductModel };

@@ -1,17 +1,17 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const {productsRouter} = require("./routers");
+const { productsRouter } = require("./routers");
 require("./mongoose");
 
 dotenv.config({ path: ".env" });
 
 // Load environment-specific .env files
 if (process.env.NODE_ENV === "production") {
-    dotenv.config({ path: ".env.production" });
+  dotenv.config({ path: ".env.production" });
 } else if (process.env.NODE_ENV === "test") {
-    dotenv.config({ path: ".env.test" });
+  dotenv.config({ path: ".env.test" });
 } else {
-    dotenv.config({ path: ".env.local" }); // Default to local development
+  dotenv.config({ path: ".env.local" }); // Default to local development
 }
 
 const port = process.env.PORT || 8080;
