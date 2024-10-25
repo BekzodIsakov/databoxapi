@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const {productsRouter} = require("./routers");
 
 dotenv.config({ path: ".env" });
 
@@ -16,10 +17,8 @@ const port = process.env.PORT || 8080;
 const hostname = process.env.HOSTNAME || "localhost";
 
 const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Success");
-});
+app.use(express.json());
+app.use("/products", productsRouter);
 
 app.listen(port, hostname, () => {
   console.log(`Server is live on ${hostname}:${port}`);
