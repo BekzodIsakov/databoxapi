@@ -65,4 +65,22 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const product = await ProductModel.findById(id);
+
+    if (!product) {
+      const error = new Error("Product not found!");
+      error.status = 404;
+      throw error;
+    }
+
+    res.send({ message: "Deleted successfully!", product });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
