@@ -24,7 +24,8 @@ app.use("/products", productsRouter);
 
 app.use((err, req, res, next) => {
   if (err.name === "ValidationError") {
-    res.status(400).json({
+    res.status(400);
+    res.send({
       success: false,
       message: "Validation Error",
       errors: err.errors, // Contains details of each invalid field
@@ -33,7 +34,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.send({
       success: false,
-      message: err.message || "Something went wrong",
+      message: err.message || "Something went wrong!",
     });
   }
 })
