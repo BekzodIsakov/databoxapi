@@ -1,12 +1,30 @@
 const express = require("express");
 
 const router = new express.Router();
-const { ProductModel } = require("../models");
+const { Product } = require("../models");
 
 router.get("/", async (req, res, next) => {
   try {
-    const products = await ProductModel.find();
+    const products = await Product.find();
     res.send(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      const error = new Error("Product not found!");
+      error.status = 404;
+      throw error;
+    }
+
+    res.send(product);
   } catch (error) {
     next(error);
   }
@@ -15,7 +33,7 @@ router.get("/", async (req, res, next) => {
 // Post request doesn't in fact create anything, it just an immmitation
 router.post("/", async (req, res, next) => {
   try {
-    const product = new ProductModel(req.body);
+    const product = new Product(req.body);
     await product.validate();
     res.status(201).send(product);
   } catch (error) {
@@ -27,7 +45,7 @@ router.patch("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const product = await ProductModel.findById(id);
+    const product = await Product.findById(id);
     if (!product) {
       const error = new Error("Product not found!");
       error.status = 404;
@@ -49,7 +67,7 @@ router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const product = await ProductModel.findById(id);
+    const product = await Product.findById(id);
     if (!product) {
       const error = new Error("Product not found!");
       error.status = 404;
@@ -69,7 +87,7 @@ router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const product = await ProductModel.findById(id);
+    const product = await Product.findById(id);
 
     if (!product) {
       const error = new Error("Product not found!");
