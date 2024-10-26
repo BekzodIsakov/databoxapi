@@ -1,5 +1,5 @@
 const express = require("express");
-const { productsRouter, categoriesRouter } = require("./routers");
+const { productsRouter, categoriesRouter, brandsRouter } = require("./routers");
 require("./mongoose");
 require("./dotenv-config");
 
@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use("/products", productsRouter);
 app.use("/categories", categoriesRouter);
+app.use("/brands", brandsRouter);
 
 app.use((err, req, res, next) => {
   if (err.name === "ValidationError") {
