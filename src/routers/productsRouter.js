@@ -1,11 +1,45 @@
 const express = require("express");
-
-const router = new express.Router();
 const { Product } = require("../models");
 
+const router = new express.Router();
+
 router.get("/", async (req, res, next) => {
+  const {
+    category,
+    brand,
+    minPrice,
+    maxPrice,
+    inStock,
+    minDiscount,
+    minRating,
+    tags,
+    sortBy,
+    order = "asc",
+    page,
+    limit
+  } = req.query;
+
+  const filter = {};
+
+  if (category) filter.category = category;
+  if (brand) filter.brand = { $regex: brand, $options: "i" };
+  if (minPrice || maxPrice) {
+    filter.price = {
+      ...(minPrice && { $gte: minPrice }),
+      ...(maxPrice && { $lte: maxPrice }),
+    };
+  }
+  if (inStock) filter.stock = { $gt: 0 };
+  if (minDiscount) filter.discount = { $gte: minDiscount };
+  if (minRating) filter.ratings = { $gte: minRating };
+  if (tags) filter.tags = { $in: tags.split(",") };
+
+  const sort = {};
+  if (sortBy) sort[sortBy] = order === "desc" ? -1 : 1;
+
   try {
-    const products = await Product.find();
+    const products = await Product.find(filter).sort(sort).limit(limit).skip((page - 1) * limit);
+
     res.send(products);
   } catch (error) {
     next(error);
@@ -35,6 +69,8 @@ router.post("/", async (req, res, next) => {
   try {
     const product = new Product(req.body);
     await product.validate();
+    // await product.save();
+
     res.status(201).send(product);
   } catch (error) {
     next(error);
