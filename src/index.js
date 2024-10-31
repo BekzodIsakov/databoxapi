@@ -40,6 +40,10 @@ app.get("/", (_, res) => {
   res.render("index", { title: "Home", message: "Databoxapi" });
 });
 
+app.get("/about", (_, res) => {
+  res.render("about", { title: "About" });
+});
+
 app.listen(port, hostname, () => {
   console.log(`Server is live on ${hostname}:${port}`);
 });
