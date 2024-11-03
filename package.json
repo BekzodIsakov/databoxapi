@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/tailwind.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,11 @@
     "express": "^4.21.1",
     "mongoose": "^8.7.2",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.14",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
   }
 }
