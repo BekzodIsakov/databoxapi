@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const { productsRouter, categoriesRouter, brandsRouter } = require("./routers");
 require("./mongoose");
 require("./dotenv-config");
@@ -38,11 +37,11 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (_, res) => {
-  res.render("index", { title: "Home", message: "Databoxapi" });
+  res.render("index");
 });
 
-app.get("/about", (_, res) => {
-  res.render("about", { title: "About" });
+app.get("/docs", (_, res) => {
+  res.render("docs");
 });
 
 app.listen(port, hostname, () => {
