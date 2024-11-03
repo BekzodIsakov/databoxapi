@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %></title>
+  <title>Home</title>
   <link href="/css/tailwind.css" rel="stylesheet">
 </head>
+
 <body>
   <%- include("partials/header") %>
-  <h1><%= message %></h1>
+    <main class="custom-container px-6">
+      <div class="px-6 py-20">
+        <h1 class="text-5xl mb-2">Welcome to DataBoxAPI</h1>
+        <h2 class="text-2xl mb-4">Your go-to solution for rapid API prototyping and development testing</h2>
+        <p class="mb-10">DataBoxAPI provides free, ready-to-use fake APIs for testing and prototyping your applications
+        </p>
+
+        <h3 class="text-xl mb-4">Features</h3>
+        <ul class="[&>*]:mb-2">
+          <li>
+            🚀 Ready-to-Use Endpoints: Pre-configured endpoints with realistic data
+          </li>
+          <li>
+            🔄 RESTful Interface: Standard GET, POST, PUT, DELETE operations
+          </li>
+          <li>
+            📊 Multiple Data Types: Access to users, posts, comments, products, and more
+          </li>
+          <li>
+            ⚡ Zero Configuration: Start making requests immediately
+          </li>
+        </ul>
+      </div>
+    </main>
 </body>
+
 </html>
