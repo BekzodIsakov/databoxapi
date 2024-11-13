@@ -35,7 +35,7 @@
           </li>
         </ul>
       </div>
-      <section class="px-6 py-4 mb-6">
+      <section class="px-6 py-4 mb-16">
         <h3 class="text-3xl">Try it</h3>
         <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products") .then(res=>res.json())
           .then(json => console.log(json))
@@ -45,11 +45,11 @@
       </section>
 
 
-      <section class="px-6 py-4">
+      <section class="px-6 py-4 mb-16">
         <h2 class="text-3xl mb-6">Resources</h2>
         <p class="mb-4">Add <code>/api</code> to the path: <code>https://www.databoxapi/api/products</code></p>
 
-        <dl class="[&>div]:flex [&>div]:mb-2 [&>div]:w-56 [&>div]:justify-between [&_a]:underline">
+        <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-32 [&_a]:underline">
           <div>
             <dt><a href="#">/products</a></dt>
             <dd>30 products</dd>
@@ -63,6 +63,28 @@
           <div>
             <dt><a href="#">/users</a></dt>
             <dd>30 users</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="px-6 py-4">
+        <h2 class="text-3xl mb-6">Routes</h2>
+        <p class="mb-4">Go to <a href="/docs" class="link link-primary">docs</a> to see the full examples</p>
+
+        <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-28 [&_a]:underline">
+          <div>
+            <dt>GET</dt>
+            <dd><a href="#">/products</a></dd>
+          </div>
+
+          <div>
+            <dt>GET</dt>
+            <dd><a href="#">/products/1</a></dd>
+          </div>
+
+          <div>
+            <dt>GET</dt>
+            <dd><a href="#">/products?category=shoes</a></dd>
           </div>
         </dl>
       </section>
