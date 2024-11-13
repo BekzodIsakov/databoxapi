@@ -12,7 +12,25 @@
 
 @layer base {
   body {
-    background-color: #f9f9f7;
+    /* background-color: #f9f9f7; */
     min-height: 100vh;
+  }
+
+  pre {
+    /* background-color: #efefe3; */
+    background-color: #f5f5e6;
+    border-radius: 6px;
+    margin: 20px 0;
+    overflow: auto;
+    padding-left: 20px;
+  }
+
+  code {
+    font-size: 14px;
+  }
+
+  /* Optional: Style for inline code */
+  :not(pre) > code {
+    border-radius: 4px;
   }
 }

@@ -1,4 +1,5 @@
 const express = require("express");
+const hljs = require("highlight.js");
 const { productsRouter, categoriesRouter, brandsRouter } = require("./routers");
 require("./mongoose");
 require("./dotenv-config");
@@ -9,6 +10,15 @@ const hostname = process.env.HOSTNAME || "localhost";
 // const viewsDirPath = path.join(__dirname, "../templates/views")
 
 const app = express();
+
+app.locals.highlight = function (code, language) {
+  if (language) {
+    return hljs.highlight(code, { language: language }).value.trim();
+  } else {
+    return hljs.highlightAuto(code).value.trim();
+  }
+};
+
 app.use(express.json());
 app.use(express.static("public"));
 
