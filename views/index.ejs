@@ -35,18 +35,37 @@
           </li>
         </ul>
       </div>
-      <div class="px-6 py-4">
+      <section class="px-6 py-4 mb-6">
         <h3 class="text-3xl">Try it</h3>
-
-        <%- include('partials/codeBlock', { code: `
-fetch("https://databoxapi.com/api/products") 
-  .then(res=> res.json())
-  .then(json => console.log(json))
+        <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products") .then(res=>res.json())
+          .then(json => console.log(json))
           `}) %>
 
           <button class="btn btn-primary">Fetch</button>
-      </div>
+      </section>
 
+
+      <section class="px-6 py-4">
+        <h2 class="text-3xl mb-6">Resources</h2>
+        <p class="mb-4">Add <code>/api</code> to the path: <code>https://www.databoxapi/api/products</code></p>
+
+        <dl class="[&>div]:flex [&>div]:mb-2 [&>div]:w-56 [&>div]:justify-between [&_a]:underline">
+          <div>
+            <dt><a href="#">/products</a></dt>
+            <dd>30 products</dd>
+          </div>
+
+          <div>
+            <dt><a href="#">/categories</a></dt>
+            <dd>5 categories</dd>
+          </div>
+
+          <div>
+            <dt><a href="#">/users</a></dt>
+            <dd>30 users</dd>
+          </div>
+        </dl>
+      </section>
     </main>
 </body>
 

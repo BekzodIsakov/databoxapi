@@ -1,3 +1,4 @@
+// run in terminal: /users/bekzodisakov/mongodb/bin/mongod --dbpath=/users/bekzodisakov/mongodb-data
 const mongoose = require("mongoose");
 
 mongoose
