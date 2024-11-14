@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
+    id: {
+      type: Number,
+      min: 1
+    },
     name: {
       type: String,
       required: true,
@@ -78,6 +82,21 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+productSchema.pre("save", async function(next) {
+  if (this.isNew) {
+    console.log("NEW");
+    
+    try {
+      const count = await this.constructor.countDocuments();
+      this.id = count + 1;
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  next();
+})
 
 module.exports = mongoose.model("Product", productSchema);
 
