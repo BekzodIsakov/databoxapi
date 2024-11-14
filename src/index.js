@@ -1,13 +1,11 @@
 const express = require("express");
 const hljs = require("highlight.js");
 const { productsRouter, categoriesRouter, brandsRouter } = require("./routers");
-require("./mongoose");
 require("./dotenv-config");
+require("./mongoose");
 
 const port = process.env.PORT || 8080;
 const hostname = process.env.HOSTNAME || "localhost";
-
-// const viewsDirPath = path.join(__dirname, "../templates/views")
 
 const app = express();
 
@@ -23,7 +21,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.set("view engine", "ejs");
-// app.use("views", viewsDirPath);
 
 app.use("/api/products", productsRouter);
 app.use("/api/categories", categoriesRouter);
