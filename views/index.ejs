@@ -10,86 +10,93 @@
 
 </head>
 
-<body>
-  <%- include("partials/header") %>
-    <main class="custom-container px-6">
-      <div class="px-6 py-16">
-        <h1 class="text-5xl mb-2">Welcome to DataboxAPI</h1>
-        <h2 class="text-2xl mb-4">Your go-to solution for rapid API prototyping and development testing</h2>
-        <p class="mb-10">DataboxAPI provides free, ready-to-use fake APIs for testing and prototyping your applications
-        </p>
+<body class="grid grid-cols-[200px_auto] grid-rows-[auto_min-content]">
+  <aside class="border"></aside>
+  <div class="custom-container">
+    <%- include("partials/header") %>
+      <main class="px-6">
+        <div class="px-6 py-16">
+          <h1 class="text-5xl mb-2">Welcome to DataboxAPI</h1>
+          <h2 class="text-2xl mb-4">Your go-to solution for rapid API prototyping and development testing</h2>
+          <p class="mb-10">DataboxAPI provides free, ready-to-use fake APIs for testing and prototyping your
+            applications
+          </p>
 
-        <h3 class="text-xl mb-4">Features</h3>
-        <ul class="[&>*]:mb-3">
-          <li>
-            🚀 Ready-to-Use Endpoints: Pre-configured endpoints with realistic data
-          </li>
-          <li>
-            🔄 RESTful Interface: Standard <b>GET, POST, PUT, DELETE</b> operations
-          </li>
-          <li>
-            📊 Multiple Data Types: Access to users, posts, comments, products, and more
-          </li>
-          <li>
-            ⚡ Zero Configuration: Start making requests immediately
-          </li>
-        </ul>
-      </div>
-      <section class="px-6 py-4 mb-16">
-        <h3 class="text-3xl">Try it</h3>
-        <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products") .then(res=>res.json())
-          .then(json => console.log(json))
-          `}) %>
+          <h3 class="text-xl mb-4">Features</h3>
+          <ul class="[&>*]:mb-3">
+            <li>
+              🚀 Ready-to-Use Endpoints: Pre-configured endpoints with realistic data
+            </li>
+            <li>
+              🔄 RESTful Interface: Standard <b>GET, POST, PUT, DELETE</b> operations
+            </li>
+            <li>
+              📊 Multiple Data Types: Access to users, posts, comments, products, and more
+            </li>
+            <li>
+              ⚡ Zero Configuration: Start making requests immediately
+            </li>
+          </ul>
+        </div>
+        <section class="px-6 py-4 mb-16">
+          <h3 class="text-3xl">Try it</h3>
+          <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products")
+            .then(res=>res.json())
+            .then(json => console.log(json))
+            `}) %>
 
-          <button class="btn btn-primary">Fetch</button>
-      </section>
+            <button class="btn btn-primary">Fetch</button>
+        </section>
 
 
-      <section class="px-6 py-4 mb-16">
-        <h2 class="text-3xl mb-6">Resources</h2>
-        <p class="mb-4">Add <code>/api</code> to the path: <code>https://www.databoxapi/api/products</code></p>
+        <section class="px-6 py-4 mb-16">
+          <h2 class="text-3xl mb-6">Resources</h2>
+          <p class="mb-4">Add <code>/api</code> to the path: <code>https://www.databoxapi/api/products</code></p>
 
-        <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-32 [&_a]:underline">
-          <div>
-            <dt><a href="#">/products</a></dt>
-            <dd>30 products</dd>
-          </div>
+          <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-32 [&_a]:underline">
+            <div>
+              <dt><a href="#">/products</a></dt>
+              <dd>30 products</dd>
+            </div>
 
-          <div>
-            <dt><a href="#">/categories</a></dt>
-            <dd>5 categories</dd>
-          </div>
+            <div>
+              <dt><a href="#">/categories</a></dt>
+              <dd>5 categories</dd>
+            </div>
 
-          <div>
-            <dt><a href="#">/users</a></dt>
-            <dd>30 users</dd>
-          </div>
-        </dl>
-      </section>
+            <div>
+              <dt><a href="#">/users</a></dt>
+              <dd>30 users</dd>
+            </div>
+          </dl>
+        </section>
 
-      <section class="px-6 py-4 pb-12">
-        <h2 class="text-3xl mb-6">Routes</h2>
-        <p class="mb-4">Go to <a href="/docs" class="link link-primary">docs</a> to see the full examples</p>
+        <section class="px-6 py-4 pb-12">
+          <h2 class="text-3xl mb-6">Routes</h2>
+          <p class="mb-4">Go to <a href="/docs" class="link link-primary">docs</a> to see the full examples</p>
 
-        <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-28 [&_a]:underline">
-          <div>
-            <dt>GET</dt>
-            <dd><a href="/api/products">/products</a></dd>
-          </div>
+          <dl class="pl-4 [&>div]:flex [&>div]:mb-2 [&_dt]:w-28 [&_a]:underline">
+            <div>
+              <dt>GET</dt>
+              <dd><a href="/api/products">/products</a></dd>
+            </div>
 
-          <div>
-            <dt>GET</dt>
-            <dd><a href="#">/products/1</a></dd>
-          </div>
+            <div>
+              <dt>GET</dt>
+              <dd><a href="#">/products/1</a></dd>
+            </div>
 
-          <div>
-            <dt>GET</dt>
-            <dd><a href="#">/products?category=shoes</a></dd>
-          </div>
-        </dl>
-      </section>
-    </main>
+            <div>
+              <dt>GET</dt>
+              <dd><a href="#">/products?category=shoes</a></dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+  </div>
+  <div class="col-span-full">
     <%- include("partials/footer") %>
+  </div>
 </body>
 
 </html>

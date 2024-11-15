@@ -8,11 +8,22 @@
   <link href="/css/tailwind.css" rel="stylesheet">
 </head>
 
-<body>
-  <%- include("partials/header")%>
-    <main class="custom-container px-6">
-      <h1>Documentation</h1>
-    </main>
+<body class="grid grid-cols-[200px_auto] grid-rows-[auto_min-content]">
+  <aside>
+    <ul>
+      <li><a href="#products" class="link-primary">Products</a></li>
+    </ul>
+  </aside>
+  <div class="custom-container">
+    <%- include("partials/header")%>
+      <main class="px-4">
+        <h1>Documentation</h1>
+      </main>
+  </div>
+  <div class="col-span-full">
+    <%- include("partials/footer")%>
+  </div>
+
 </body>
 
 </html>
