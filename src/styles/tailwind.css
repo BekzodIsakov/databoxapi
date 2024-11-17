@@ -15,8 +15,29 @@
   body {
     background-color: #f9f9f7;
     min-height: 100vh;
+    @apply text-sm;
   }
 
+  @screen sm {
+    body {
+      @apply text-base;
+    }
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 3.8vw, 2rem);
+    line-height: 1.2;
+  }
+
+  p,
+  li {
+    line-height: 1.5;
+  }
   pre {
     /* background-color: #efefe3; */
     background-color: #f5f5e6;
@@ -26,12 +47,10 @@
     padding-left: 20px;
   }
 
-  code {
-    font-size: 14px;
-  }
-
   /* Optional: Style for inline code */
   :not(pre) > code {
     border-radius: 4px;
+    overflow-wrap: break-word; /* Break long words */
+    word-break: break-all; /* Breaks words if needed */
   }
 }

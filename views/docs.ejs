@@ -8,22 +8,23 @@
   <link href="/css/tailwind.css" rel="stylesheet">
 </head>
 
-<body class="grid grid-cols-[200px_auto] grid-rows-[auto_min-content]">
-  <aside>
-    <ul>
-      <li><a href="#products" class="link-primary">Products</a></li>
-    </ul>
-  </aside>
-  <div class="custom-container">
-    <%- include("partials/header")%>
-      <main class="px-4">
-        <h1>Documentation</h1>
-      </main>
+<body class="min-h-screen flex flex-col">
+  <div class="w-full min-[890px]:w-[60vw] mx-auto grow flex">
+    <aside class="min-[890px]:fixed w-44 left-0 h-full sm:block hidden">
+      <ul>
+        <li><a href="#products" class="link-primary">Products</a></li>
+      </ul>
+    </aside>
+    <div class="max-[890px]:grow max-[890px]:px-8 w-full">
+      <%- include("partials/header")%>
+        <main class="px-4">
+          <h1>Documentation</h1>
+        </main>
+    </div>
   </div>
-  <div class="col-span-full">
+  <div class="relative">
     <%- include("partials/footer")%>
   </div>
-
 </body>
 
 </html>
