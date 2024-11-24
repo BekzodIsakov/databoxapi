@@ -85,8 +85,6 @@ const productSchema = new mongoose.Schema(
 
 productSchema.pre("save", async function(next) {
   if (this.isNew) {
-    console.log("NEW");
-    
     try {
       const count = await this.constructor.countDocuments();
       this.id = count + 1;
