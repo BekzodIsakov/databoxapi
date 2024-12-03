@@ -69,7 +69,7 @@ router.post("/", async (req, res, next) => {
   try {
     const product = new Product(req.body);
     await product.validate();
-    await product.save();
+    // await product.save();
 
     res.status(201).send(product);
   } catch (error) {
