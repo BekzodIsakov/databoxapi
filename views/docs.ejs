@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation</title>
   <link href="/css/tailwind.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
   <script defer src="/js/docs.js"></script>
 </head>
 
@@ -45,11 +46,11 @@
     </aside>
     <div class="max-[890px]:grow max-[890px]:px-8 w-full">
       <%- include("partials/header")%>
-        <main class="px-4 space-y-20">
+        <main class="px-4 space-y-24">
           <article>
             <h2 id="products" class="mb-6">Products</h2>
 
-            <div class="space-y-20">
+            <div class="space-y-16">
               <section class="space-y-4 mb-5">
                 <h3 id="get-all-products">All products</h3>
                 <div>
@@ -233,7 +234,7 @@
                 </div>
               </section>
 
-              <article class="space-y-5 mb-5 [&>section:not(:last-child)]:p-2 [&>section_p]:mb-3">
+              <article class="space-y-5 mb-5 [&>section]:p-3 [&>section_p]:mb-3">
                 <h3 id="get-single-product">Filtering products by Category, Brand and more</h3>
                 <section>
                   <h4>Category</h4>
@@ -298,7 +299,6 @@
                     <%- include('partials/codeBlock', { code: `fetch("https://databoxapi.com/api/products?sortBy=price&order=desc")`}) %>
                   </div>
                 </section>
-
                 <section>
                   <h4>Paginated Product Retrieval</h4>
                   <p>Retrieves a specific page of products with pagination capabilities.</p>
@@ -306,100 +306,309 @@
                     <%- include('partials/codeBlock', { code: `fetch("https://databoxapi.com/api/products?page=1&limit=10")`}) %>
                   </div>
                 </section>
-              </section>
+              </article>
 
               <section class="space-y-4 mb-5">
                 <h3 id="get-single-product">Single product</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
                 <div class="result hidden space-y-4">
                   <div>
                   <%- include('partials/codeBlock', { code: `
+  {
+    id: 1,
+    name: "Sony WH-1000XM4 Wireless Headphones",
+    description: "Premium noise-cancelling wireless headphones with exceptional sound quality and up to 30 hours of battery life.",
+    price: 349.99,
+    category: "electronics",
+    stock: 25,
+    images: [
       {
-        id: 1,
-        name: "Sony WH-1000XM4 Wireless Headphones",
-        description: "Premium noise-cancelling wireless headphones with exceptional sound quality and up to 30 hours of battery life.",
-        price: 349.99,
-        category: "electronics",
-        stock: 25,
-        images: [
-          {
-            url: "https://example.com/images/sony-headphones-1.jpg",
-            alt: "Sony WH-1000XM4 headphones in black"
-          },
-          {
-            url: "https://example.com/images/sony-headphones-2.jpg",
-            alt: "Sony WH-1000XM4 side view"
-          }
-        ],
-        brand: "Sony",
-        ratings: 4.8,
-        reviews: [
-          {
-            user: "507f1f77bcf86cd799439011", // This should be a real MongoDB ObjectId in the database
-            rating: 5,
-            comment: "Best headphones I've ever owned. The noise cancellation is incredible!",
-            createdAt: new Date("2024-03-15")
-          }
-        ],
-        isFeatured: true,
-        discount: 10,
-        tags: ["wireless", "noise-cancelling", "bluetooth", "high-end"]
+        url: "https://example.com/images/sony-headphones-1.jpg",
+        alt: "Sony WH-1000XM4 headphones in black"
+      },
+      {
+        url: "https://example.com/images/sony-headphones-2.jpg",
+        alt: "Sony WH-1000XM4 side view"
       }
-                    `}) %>
+    ],
+    brand: "Sony",
+    ratings: 4.8,
+    reviews: [
+      {
+        user: "507f1f77bcf86cd799439011",
+        rating: 5,
+        comment: "Best headphones I've ever owned. The noise cancellation is incredible!",
+        createdAt: new Date("2024-03-15")
+      }
+    ],
+    isFeatured: true,
+    discount: 10,
+    tags: ["wireless", "noise-cancelling", "bluetooth", "high-end"]
+}
+    `}) %>
                   </div>
                 </div>
               </section>
 
               <section class="space-y-4 mb-5">
-                <h3 id="add-new-product">Add new product</h3>
+                <h3 id="add-new-product">Create new product</h3>
+                <p>Endpoint to create a new product. This POST request serves as a data validation and replication tool, demonstrating the product schema structure without modifying the actual database. The example below demonstrates possible data for each field. In fact, you can create new product with just product name.</p>
                 <div>
-                  <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
-                    `}) %>
+<%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: {
+    "name": "LEGO Star Wars Millennium Falcon",
+    "description": "Detailed LEGO replica of the iconic Star Wars spacecraft with 7,541 pieces.",
+    "price": 499.99,
+    "category": "toys",
+    "stock": 10,
+    "images": [
+      {
+        "url": "https://example.com/images/lego-falcon-1.jpg",
+        "alt": "LEGO Millennium Falcon set",
+        "_id": "674e9b9eee5bbe333e518705"
+      },
+      {
+        "url": "https://example.com/images/lego-falcon-2.jpg",
+        "alt": "LEGO Millennium Falcon detailed view",
+        "_id": "674e9b9eee5bbe333e518706"
+      }
+    ],
+    "brand": "LEGO",
+    "ratings": 4.9,
+    "reviews": [
+      {
+        "user": "64b1f3d2b5d8a629b3f9c2d5",
+        "rating": 5,
+        "comment": "Ultimate collector's item, amazing detail!",
+        "createdAt": "2024-01-20T00:00:00.000Z",
+        "_id": "674e9b9eee5bbe333e518707"
+      }
+    ],
+    "isFeatured": true,
+    "discount": 5,
+    "tags": [
+      "star-wars",
+      "collector",
+      "building-set",
+      "premium"
+    ]
+})
+  .then(res=>res.json())
+  .then(json => console.log(json))
+`}) %>
                 </div>
+                <details class="overflow-auto">
+                  <summary>Description</summary>
+                  <div class="p-4">
+                    <table class="w-full border-collapse">
+                      <thead>
+                        <tr class="bg-gray-100">
+                          <th class="border p-2 text-left">Property</th>
+                          <th class="border p-2 text-left">Type</th>
+                          <th class="border p-2 text-left">Description</th>
+                          <th class="border p-2 text-left">Validation Rules</th>
+                          <th class="border p-2 text-left">Required</th>
+                          <th class="border p-2 text-left">Default Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border p-2 font-medium">_id</td>
+                          <td class="border p-2">ObjectId</td>
+                          <td class="border p-2">MongoDB's internal unique identifier</td>
+                          <td class="border p-2">
+                            - Auto-generated by MongoDB<br>
+                            - Unique across collection<br>
+                            - 24-character hex string<br>
+                            - Immutable
+                          </td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Auto-generated</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">id</td>
+                          <td class="border p-2">Number</td>
+                          <td class="border p-2">Unique identifier for the product</td>
+                          <td class="border p-2">Must be greater than 0</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Current items count</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">name</td>
+                          <td class="border p-2">String</td>
+                          <td class="border p-2">Product display name</td>
+                          <td class="border p-2">Required, whitespace trimmed</td>
+                          <td class="border p-2">Yes</td>
+                          <td class="border p-2">None</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">description</td>
+                          <td class="border p-2">String</td>
+                          <td class="border p-2">Detailed product description</td>
+                          <td class="border p-2">Whitespace trimmed</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Empty string</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">price</td>
+                          <td class="border p-2">Number</td>
+                          <td class="border p-2">Product price in currency units</td>
+                          <td class="border p-2">Must be ≥ 0</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">15.99</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">category</td>
+                          <td class="border p-2">String</td>
+                          <td class="border p-2">Product category classification</td>
+                          <td class="border p-2">Must be one of: electronics, clothing, home, books, toys, beauty,
+                            sports, other. Automatically lowercase</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">"Other"</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">stock</td>
+                          <td class="border p-2">Number</td>
+                          <td class="border p-2">Current quantity available</td>
+                          <td class="border p-2">Must be ≥ 0</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">5</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">images</td>
+                          <td class="border p-2">Array of Objects</td>
+                          <td class="border p-2">Collection of product images</td>
+                          <td class="border p-2">
+                            Each object contains:<br>
+                            - url (String, required)<br>
+                            - alt (String, defaults to "Product image")
+                          </td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Empty array</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">brand</td>
+                          <td class="border p-2">String</td>
+                          <td class="border p-2">Product manufacturer or brand name</td>
+                          <td class="border p-2">Whitespace trimmed</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">"Brand name"</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">ratings</td>
+                          <td class="border p-2">Number</td>
+                          <td class="border p-2">Average product rating</td>
+                          <td class="border p-2">Range: 0-5, defaults to 0</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">5</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">reviews</td>
+                          <td class="border p-2">Array of Objects</td>
+                          <td class="border p-2">Collection of customer reviews</td>
+                          <td class="border p-2">
+                            Each review contains:<br>
+                            - user (ObjectId, ref: "User")<br>
+                            - rating (Number, 1-5, required)<br>
+                            - comment (String, trimmed)<br>
+                            - createdAt (Date, auto-generated)
+                          </td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Empty array</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">isFeatured</td>
+                          <td class="border p-2">Boolean</td>
+                          <td class="border p-2">Indicates if product should be featured,meaning it is being highlighted or prioritized for special promotion</td>
+                          <td class="border p-2">Defaults to false</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">false</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">discount</td>
+                          <td class="border p-2">Number</td>
+                          <td class="border p-2">Current discount percentage</td>
+                          <td class="border p-2">Range: 0-100, defaults to 0</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">0</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">tags</td>
+                          <td class="border p-2">Array of Strings</td>
+                          <td class="border p-2">Keywords for product classification and search</td>
+                          <td class="border p-2">Optional</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Empty array</td>
+                        </tr>
+                        <tr>
+                          <td class="border p-2 font-medium">timestamps</td>
+                          <td class="border p-2">Object</td>
+                          <td class="border p-2">Automatically managed timestamps</td>
+                          <td class="border p-2">Adds createdAt and updatedAt dates automatically</td>
+                          <td class="border p-2">No</td>
+                          <td class="border p-2">Auto-generated</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </details>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
                 <div class="result hidden space-y-4">
                   <div>
-                  <%- include('partials/codeBlock', { code: `
-      {
-        id: 1,
-        name: "Sony WH-1000XM4 Wireless Headphones",
-        description: "Premium noise-cancelling wireless headphones with exceptional sound quality and up to 30 hours of battery life.",
-        price: 349.99,
-        category: "electronics",
-        stock: 25,
-        images: [
-          {
-            url: "https://example.com/images/sony-headphones-1.jpg",
-            alt: "Sony WH-1000XM4 headphones in black"
-          },
-          {
-            url: "https://example.com/images/sony-headphones-2.jpg",
-            alt: "Sony WH-1000XM4 side view"
-          }
-        ],
-        brand: "Sony",
-        ratings: 4.8,
-        reviews: [
-          {
-            user: "507f1f77bcf86cd799439011", // This should be a real MongoDB ObjectId in the database
-            rating: 5,
-            comment: "Best headphones I've ever owned. The noise cancellation is incredible!",
-            createdAt: new Date("2024-03-15")
-          }
-        ],
-        isFeatured: true,
-        discount: 10,
-        tags: ["wireless", "noise-cancelling", "bluetooth", "high-end"]
-      }
-                    `}) %>
+<%- include('partials/codeBlock', { code: `
+{
+  "name": "LEGO Star Wars Millennium Falcon",
+  "description": "Detailed LEGO replica of the iconic Star Wars spacecraft with 7,541 pieces.",
+  "price": 499.99,
+  "category": "toys",
+  "stock": 10,
+  "images": [
+    {
+      "url": "https://example.com/images/lego-falcon-1.jpg",
+      "alt": "LEGO Millennium Falcon set",
+      "_id": "674e9b9eee5bbe333e518705"
+    },
+    {
+      "url": "https://example.com/images/lego-falcon-2.jpg",
+      "alt": "LEGO Millennium Falcon detailed view",
+      "_id": "674e9b9eee5bbe333e518706"
+    }
+  ],
+  "brand": "LEGO",
+  "ratings": 4.9,
+  "reviews": [
+    {
+      "user": "64b1f3d2b5d8a629b3f9c2d5",
+      "rating": 5,
+      "comment": "Ultimate collector's item, amazing detail!",
+      "createdAt": "2024-01-20T00:00:00.000Z",
+      "_id": "674e9b9eee5bbe333e518707"
+    }
+  ],
+  "isFeatured": true,
+  "discount": 5,
+  "tags": [
+    "star-wars",
+    "collector",
+    "building-set",
+    "premium"
+  ],
+  "_id": "674e9b9eee5bbe333e518704",
+  "createdAt": "2024-12-03T05:48:14.867Z",
+  "updatedAt": "2024-12-03T05:48:14.867Z",
+  "id": 1,
+}
+`}) %>
                   </div>
                 </div>
               </section>
@@ -408,8 +617,8 @@
                 <h3 id="edit-product-put">Edit product - put</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
@@ -456,8 +665,8 @@
                 <h3 id="edit-product-patch">Edit product - patch</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
@@ -504,8 +713,8 @@
                 <h3 id="delete-product">Delete product</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
@@ -547,8 +756,7 @@
                   </div>
                 </div>
               </section>
-          </div>
-
+            </div>
           </article>
 
           <article>
@@ -559,8 +767,8 @@
                 <h3 id="all-categories">All categories</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
@@ -742,8 +950,8 @@
                 <h3 id="single-product">Get single product</h3>
                 <div>
                   <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products/1")
-                    .then(res=>res.json())
-                    .then(json => console.log(json))
+  .then(res=>res.json())
+  .then(json => console.log(json))
                     `}) %>
                 </div>
                 <button class="btn btn-primary btn-outline resultBtn">Result</button>
