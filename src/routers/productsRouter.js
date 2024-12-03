@@ -93,8 +93,6 @@ router.patch("/:id", async (req, res, next) => {
 
     res.send(product);
   } catch (error) {
-    console.log(error);
-
     next(error);
   }
 });
@@ -113,7 +111,7 @@ router.put("/:id", async (req, res, next) => {
     product.set(req.body); // Merge the new data into the product instance
     await product.validate(); // Validate the merged data without saving
 
-    res.send(req.body);
+    res.send({...req.body, _id: product._id, id: product.id});
   } catch (error) {
     next(error);
   }
@@ -123,7 +121,7 @@ router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const product = await Product.findById(id);
+    const product = await Product.find({id});
 
     if (!product) {
       const error = new Error("Product not found!");
