@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema(
   {
     id: {
       type: Number,
-      min: 1
+      min: 1,
     },
     name: {
       type: String,
@@ -13,17 +13,20 @@ const productSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      // required: true,
+      default: "",
       trim: true,
     },
     price: {
       type: Number,
-      required: true,
+      // required: true,
+      default: 15.99,
       min: 0,
     },
     category: {
       type: String,
-      required: true,
+      // required: true,
+      default: "other",
       lowercase: true,
       enum: [
         "electronics",
@@ -38,34 +41,42 @@ const productSchema = new mongoose.Schema(
     },
     stock: {
       type: Number,
-      required: true,
+      // required: true,
+      default: 5,
       min: 0,
     },
-    images: [
-      {
-        url: { type: String, required: true },
-        alt: { type: String, default: "Product image" },
-      },
-    ],
+    images: {
+      type: [
+        {
+          url: { type: String, required: true },
+          alt: { type: String, default: "Product image" },
+        },
+      ],
+      default: [],
+    },
     brand: {
       type: String,
-      required: true,
+      // required: true,
+      default: "Brand name",
       trim: true,
     },
     ratings: {
       type: Number,
       min: 0,
       max: 5,
-      default: 0,
+      default: 5,
     },
-    reviews: [
-      {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        rating: { type: Number, required: true, min: 1, max: 5 },
-        comment: { type: String, trim: true },
-        createdAt: { type: Date, default: Date.now },
-      },
-    ],
+    reviews: {
+      type: [
+        {
+          user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+          rating: { type: Number, required: true, min: 1, max: 5 },
+          comment: { type: String, trim: true },
+          createdAt: { type: Date, default: Date.now },
+        },
+      ],
+      default: [],
+    },
     isFeatured: {
       type: Boolean,
       default: false,
@@ -76,14 +87,14 @@ const productSchema = new mongoose.Schema(
       max: 100,
       default: 0,
     },
-    tags: [String],
+    tags: { type: [String], default: [] },
   },
   {
     timestamps: true,
   }
 );
 
-productSchema.pre("save", async function(next) {
+productSchema.pre("save", async function (next) {
   if (this.isNew) {
     try {
       const count = await this.constructor.countDocuments();
@@ -94,7 +105,7 @@ productSchema.pre("save", async function(next) {
   }
 
   next();
-})
+});
 
 module.exports = mongoose.model("Product", productSchema);
 
