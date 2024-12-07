@@ -75,4 +75,25 @@
   li ul {
     @apply ml-3;
   }
+
+  svg {
+    display: inline-block;
+  }
+
+  .anchor-link {
+    outline: none;
+  }
+
+  .anchor-link::after {
+    content: "";
+    display: none;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.3em;
+    background-image: url("/assets/anchor.svg");
+  }
+
+  .anchor-link:hover::after {
+    display: inline-block;
+  }
 }
