@@ -9,6 +9,7 @@ const hostname = process.env.HOSTNAME || "localhost";
 
 const app = express();
 
+
 app.locals.highlight = function (code, language) {
   if (language) {
     return hljs.highlight(code, { language: language }).value.trim();
@@ -19,6 +20,7 @@ app.locals.highlight = function (code, language) {
 
 app.use(express.json());
 app.use(express.static("public"));
+app.use('/src', express.static('src'));
 
 app.set("view engine", "ejs");
 
@@ -54,6 +56,8 @@ app.get("/docs", (_, res) => {
 app.use((_, res) => {
   res.status(404).render("404");
 });
+
+
 
 app.listen(port, hostname, () => {
   console.log(`Server is live on ${hostname}:${port}`);
