@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <link href="/css/tailwind.css" rel="stylesheet">
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <div class="grow md:w-[60vw] sm:mx-auto mx-1">
+    <%- include("partials/header") %>
+      <main class="px-6 mb-6">
+        <h1>Page not found</h1>
+        <button class="link" onclick="window.history.back()">&larr; Go back</button>
+      </main>
+  </div>
+  <div class="col-span-full">
+    <%- include("partials/footer") %>
+  </div>
+</body>
+
+</html>
