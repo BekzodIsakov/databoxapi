@@ -13,8 +13,8 @@
 <body class="flex flex-col min-h-screen">
   <div class="grow md:w-[60vw] sm:mx-auto mx-1">
     <%- include("partials/header") %>
-      <main class="px-6">
-        <div class="px-6 py-16">
+      <main class="px-6 space-y-16 mb-6">
+        <section class="px-6 pt-16">
           <h1 class="mb-2">Welcome to DataboxAPI</h1>
           <h2 class="mb-4">Your go-to solution for rapid API prototyping and development testing</h2>
           <p class="mb-10">DataboxAPI provides free, ready-to-use fake APIs for testing and prototyping your
@@ -23,32 +23,22 @@
 
           <h3 class="text-xl mb-4">Features</h3>
           <ul class="[&>*]:mb-3">
-            <li>
-              🚀 Ready-to-Use Endpoints: Pre-configured endpoints with realistic data
-            </li>
-            <li>
-              🔄 RESTful Interface: Standard <b>GET, POST, PUT, DELETE</b> operations
-            </li>
-            <li>
-              📊 Multiple Data Types: Access to users, posts, comments, products, and more
-            </li>
-            <li>
-              ⚡ Zero Configuration: Start making requests immediately
-            </li>
+            <li>🚀 Ready-to-Use Endpoints: Pre-configured endpoints with realistic data</li>
+            <li>🔄 RESTful Interface: Standard <b>GET, POST, PUT, DELETE</b> operations</li>
+            <li>📊 Multiple Data Types: Access to users, posts, comments, products, and more</li>
+            <li>⚡ Zero Configuration: Start making requests immediately</li>
           </ul>
-        </div>
-        <section class="px-6 py-4 mb-16">
+        </section>
+        <section class="px-6 py-4 space-y-4">
           <h3 class="text-3xl">Try it</h3>
           <%- include('partials/codeBlock', { code: ` fetch("https://databoxapi.com/api/products")
-    .then(res=>res.json())
-    .then(json => console.log(json))
+            .then(res=>res.json())
+            .then(json => console.log(json))
             `}) %>
-
             <button class="btn btn-primary">Fetch</button>
         </section>
 
-
-        <section class="px-6 py-4 mb-16">
+        <section class="px-6 py-4">
           <h2 class="text-3xl mb-6">Resources</h2>
           <p class="mb-4">Add <code>/api</code> to the path: <code>https://www.databoxapi/api/products</code></p>
 
