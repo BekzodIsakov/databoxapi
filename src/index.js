@@ -26,7 +26,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/brands", brandsRouter);
 
-app.use((err, req, res, next) => {
+app.use((err, _, res, next) => {
   if (err.name === "ValidationError") {
     res.status(400);
     res.send({
@@ -49,6 +49,10 @@ app.get("/", (_, res) => {
 
 app.get("/docs", (_, res) => {
   res.render("docs");
+});
+
+app.use((req, res, next) => {
+  res.status(404).render("404");
 });
 
 app.listen(port, hostname, () => {
