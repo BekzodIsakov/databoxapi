@@ -52,6 +52,12 @@
     @apply font-medium mb-2 text-gray-700;
   }
 
+  h5 {
+    font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+    line-height: 1.2;
+    @apply font-medium mb-1 text-gray-600;
+  }
+
   p,
   li {
     line-height: 1.5;
@@ -73,7 +79,7 @@
   }
 
   li ul {
-    @apply ml-3;
+    @apply ml-1 mt-1;
   }
 
   svg {
