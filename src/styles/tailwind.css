@@ -78,8 +78,8 @@
     word-break: break-all; /* Breaks words if needed */
   }
 
-  li ul {
-    @apply ml-1 mt-1;
+  ul {
+    @apply space-y-1;
   }
 
   svg {
